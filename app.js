@@ -26,7 +26,7 @@ addInput.addEventListener("keypress", function(e){
     if(e.key === "Enter")
     {
         // This means that user wants to add this to-do
-        console.log("Enter pressed")
+        // console.log("Enter pressed")
 
 
 
@@ -37,24 +37,11 @@ addInput.addEventListener("keypress", function(e){
         newLi.innerHTML = `<span>${newText}</span> <i class="far fa-trash-alt delete" ></i>`;
 
         newLi.classList.add("list-group-item","d-flex","justify-content-between","align-items-center")
-        console.log(newLi);
+        // console.log(newLi);
 
         listToDo.appendChild(newLi);
     }
 });
-
-
-// Delete ToDo Functionality
-
-
-// const deleteTodo = ()=>{
-//     console.log("Clicked");
-// }
-// const del = document.querySelector(".delete");
-
-// del.addEventListener("click", function(e){
-//     console.log("I was clicked");
-// })
 
 
 
@@ -87,3 +74,40 @@ document.body.addEventListener( 'click', function ( event ) {
 
 
 //   Search Functionality
+
+
+const searchForm= document.querySelector(".search")
+
+searchForm.addEventListener("submit", function(e){
+    e.preventDefault();
+})
+
+
+// Input tag
+
+const searchInput = document.querySelector("#search")
+
+searchInput.addEventListener('input', function(e){
+    // console.log(this.value);
+
+    const currInput = this.value.toLowerCase();
+
+    // console.log(currInput);
+
+    // console.log(listToDo.children);
+
+    const currToDo = listToDo.children;
+
+    for(let li of currToDo){
+        // console.log(li);
+
+        const ToDo = li.textContent.trim();
+        // console.log(ToDo);
+
+        if(ToDo.toLowerCase().includes(currInput)){
+            li.classList.remove("filtered") 
+        }else{
+            li.classList.add("filtered")
+        }
+    }
+})
